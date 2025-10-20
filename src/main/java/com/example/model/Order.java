@@ -7,6 +7,10 @@ public class Order {
     private String idPedido;
     private List<Article> articulos;
 
+    public Order(){
+        
+    }
+
 
 public Order(String idPedido){
     this.idPedido = idPedido;

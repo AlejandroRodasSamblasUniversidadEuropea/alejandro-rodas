@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import com.example.model.Calculator;
 
-public class CalculatorTestsCase {
+public class CalculatorTestCase {
     
     private Calculator calculator;
 

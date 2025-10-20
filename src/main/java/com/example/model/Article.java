@@ -5,6 +5,10 @@ public class Article {
     private int cantidad;
     private double precio;
     private double descuento;
+
+    public Article(){
+
+    }
     
     public Article(String nombre,int cantidad, double precio, double descuento){
         this.nombre = nombre;
