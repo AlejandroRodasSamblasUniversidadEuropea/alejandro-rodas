@@ -45,11 +45,10 @@ public class Main {
                 System.out.println("Total con descuento: " + pedido.getDiscountedTotal() + " euros");
                 System.out.println("=========================================\n");
 
-                // También lo registramos en los logs
                 log.debug("Pedido cargado correctamente: {}", pedido.getidPedido());
             }
 
-            reader.close(); // cerramos el archivo al terminar
+            reader.close();
             log.info("Archivo JSON leído correctamente.");
 
         } catch (Exception e) {
