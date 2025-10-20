@@ -29,7 +29,7 @@ public class Main {
             for (Order pedido : pedidos) {
                 System.out.println("=========================================");
                 System.out.println("ID del pedido: " + pedido.getidPedido());
-                System.out.println("Artículos del pedido:");
+                System.out.println("Artículos del pedido: ");
                 System.out.println("-----------------------------------------");
 
                 for (Article articulo : pedido.getArticulos()) {
