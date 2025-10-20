@@ -1,0 +1,39 @@
+[
+  {
+    "idPedido": "O001",
+    "articulos": [
+      { "nombre": "Keyboard", "cantidad": 2, "precio": 50, "descuento": 0.10 },
+      { "nombre": "Mouse", "cantidad": 1, "precio": 30, "descuento": 0 },
+      { "nombre": "Charger", "cantidad": 1, "precio": 20, "descuento": 0.05 }
+    ]
+  },
+  {
+    "idPedido": "O002",
+    "articulos": [
+      { "nombre": "Monitor", "cantidad": 1, "precio": 200, "descuento": 0.05 },
+      { "nombre": "Headset", "cantidad": 2, "precio": 40, "descuento": 0.15 }
+    ]
+  },
+  {
+    "idPedido": "O003",
+    "articulos": [
+      { "nombre": "Call of Duty", "cantidad": 1, "precio": 50, "descuento": 0 },
+      { "nombre": "Gaming Chair", "cantidad": 1, "precio": 440, "descuento": 0.10 }
+    ]
+  },
+  {
+    "idPedido": "O004",
+    "articulos": [
+      { "nombre": "Laptop", "cantidad": 3, "precio": 890, "descuento": 0.5 }
+    ]
+  },
+  {
+    "idPedido": "O005",
+    "articulos": [
+      { "nombre": "Iphone X", "cantidad": 1, "precio": 500, "descuento": 0.2 },
+      { "nombre": "Nvidia Graphic card", "cantidad": 2, "precio": 650, "descuento": 0.20 },
+      { "nombre": "Apple Airpods 3", "cantidad": 1, "precio": 99.99, "descuento": 0.13 },
+      { "nombre": "Garmin Fenix 7X", "cantidad": 4, "precio": 829, "descuento": 0.15 }
+    ]
+  }
+]
