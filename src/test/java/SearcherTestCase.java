@@ -1,9 +1,13 @@
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import java.util.ArrayList;
-import java.util.List;
+
 import com.example.model.Searcher;
 
 public class SearcherTestCase {
@@ -11,6 +15,7 @@ public class SearcherTestCase {
      private Searcher searcher;
 
     @BeforeEach
+     @SuppressWarnings("unused")
     void setUp(){
         searcher= new Searcher();
     }
@@ -136,6 +141,6 @@ public class SearcherTestCase {
         frases.add("Hola mi casa es muy buena");
         frases.add("Adios");
         List<String> result = searcher.filterByKeyword("perro", frases);
-        assertTrue(result.isEmpty());;
+        assertTrue(result.isEmpty());
     }
 }

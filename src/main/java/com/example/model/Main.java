@@ -1,14 +1,19 @@
 package com.example.model;
 
-import com.google.gson.*;
-import com.google.gson.reflect.TypeToken;
+import com.example.controller.OrderController;
+import com.example.view.OrderView;
+
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.lang.reflect.Type;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.FileReader;
-import java.lang.reflect.Type;
-import java.util.List;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 public class Main {
     private static final Logger log = LoggerFactory.getLogger(Main.class);
@@ -18,12 +23,17 @@ public class Main {
         log.info("Iniciando la carga de los pedidos...");
 
         try {
-            FileReader reader = new FileReader("src/main/resources/orders.json");
+
+            InputStream inputStream = Main.class.getClassLoader().getResourceAsStream("orders.json");
+            if (inputStream == null) {
+                log.error("No se encontró el archivo orders.json en resources");
+                return;
+            }
+
+            Reader reader = new InputStreamReader(inputStream, java.nio.charset.StandardCharsets.UTF_8);
 
             Gson gson = new Gson();
-
             Type listType = new TypeToken<List<Order>>() {}.getType();
-
             List<Order> pedidos = gson.fromJson(reader, listType);
 
             for (Order pedido : pedidos) {
@@ -51,8 +61,12 @@ public class Main {
             reader.close();
             log.info("Archivo JSON leído correctamente.");
 
+            // Initialize MVC
+            OrderView view = new OrderView();
+            new OrderController(view, pedidos);
+
         } catch (Exception e) {
-            log.error("Error al leer el archivo JSON");
+            log.error("Error al leer el archivo JSON", e);
         }
     }
 }
