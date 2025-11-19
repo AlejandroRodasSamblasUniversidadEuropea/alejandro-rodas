@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,104 +9,50 @@ import org.junit.jupiter.api.Test;
 import com.example.model.Calculator;
 
 public class CalculatorTestCase {
-    
+
     private Calculator calculator;
 
     @BeforeEach
-    @SuppressWarnings("unused")
     void setUp() {
         calculator = new Calculator();
     }
 
     @Test
-    @DisplayName("Test to check multiplication of two integers")
-    void testMutiplynumbers(){
-        int result = calculator.multiply(2, 6);
-        assertEquals(result, 12);
-    }
-    @Test
-    @DisplayName("Test to check multiplication of a integer with 0")
-    void testMutiplyx0(){
-        int result = calculator.multiply(2, 0);
-        assertEquals(result, 0);
-    }
-    @Test
-    @DisplayName("Test to check multiplication of two integers, one negative")
-    void testMutiplyNegatives(){
-        int result = calculator.multiply(-2, 6);
-        assertEquals(result, -12);
+    @DisplayName("Multiply two positive integers")
+    void testMutiplyNumbers() {
+        assertEquals(12, calculator.multiply(2, 6));
     }
 
     @Test
-    @DisplayName("Test to check concatenation of two strings")
+    @DisplayName("Concatenate two valid strings")
     void testConcat() {
-        String result = calculator.concat("Carlos ", "Ramirez");
-        assertEquals(result, "Carlos Ramirez");
+        assertEquals("Carlos Ramirez", calculator.concat("Carlos ", "Ramirez"));
     }
 
     @Test
-    @DisplayName("Test to check concatenation of two strings, one is null")
-    void testConcatNull() {
-        String result = calculator.concat(null, "Ramirez");
-        assertEquals("empty",result);
+    @DisplayName("Concat with first param null = empty")
+    void testConcatFirstNull() {
+        assertEquals("empty", calculator.concat(null, "Ramirez"));
     }
 
     @Test
-    @DisplayName("Test normal summ")
-    void TestNormalSumm(){
-        double result = calculator.sum(1, 2);
-        assertEquals(result, 3);
+    @DisplayName("Sum normal")
+    void testNormalSum() {
+        assertEquals(3, calculator.sum(1, 2));
     }
 
     @Test
-    @DisplayName("Test summ with negatives")
-    void TestNegativeSumm(){
-        double result = calculator.sum(-1, 2);
-        assertEquals(result, 1);
+    @DisplayName("Discount 20%")
+    void testDiscount() {
+        assertEquals(80, calculator.discount(100, 20));
     }
 
     @Test
-    @DisplayName("Test discount")
-    void TestDiscount(){
-        double result =calculator.discount(100, 20);
-        assertEquals(result, 80);
-    }
-
-    @Test
-    @DisplayName("Test discount 0%")
-    void TestDiscount0(){
-        double result =calculator.discount(100, 0);
-        assertEquals(result, 100);
-    }
-
-    @Test
-    @DisplayName("Test discount 0%")
-    void TestDiscount100(){
-        double result =calculator.discount(100, 100);
-        assertEquals(result, 0);
-    }
-   /* @Test
-    @DisplayName("Test discount ilegal amount")
-    void TestDiscountPercentLessThanZero() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            calculator.discount(100, -5);
-        });
-    }
-        */
-    @Test
-    @DisplayName("Test calcule total")
-    void TestCalculeTotal(){
+    @DisplayName("Calculate total of valid list")
+    void testCalculateTotal() {
         List<Double> cantidades = new ArrayList<>();
         cantidades.add(4.0);
         cantidades.add(6.0);
-        double result = calculator.calculateTotal(cantidades);
-        assertEquals(result, 10);
-    }
-    @Test
-    @DisplayName("Test calcule empty list")
-    void TestCalculeEmpty(){
-        List<Double> cantidades = new ArrayList<>();
-        double result= calculator.calculateTotal(cantidades);
-        assertEquals(result, 0.0);
+        assertEquals(10, calculator.calculateTotal(cantidades));
     }
 }

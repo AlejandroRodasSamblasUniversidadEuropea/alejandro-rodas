@@ -16,14 +16,12 @@ public class ArticleTest {
     @Test
     @DisplayName("getNombre test")
     void testGetNombre (){
-        String result = article.getNombre();
-        assertEquals(result, "Laptop");
+        assertEquals("Laptop", article.getNombre());
     }
 
     @Test
     @DisplayName("setNombre test")
     void testSetNombre(){
-        assertEquals("Laptop", article.getNombre());
         article.setNombre("Tablet");
         assertEquals("Tablet", article.getNombre());
     }
@@ -31,14 +29,12 @@ public class ArticleTest {
     @Test
     @DisplayName("getCantidad test")
     void testGetCantidad(){
-        int result = article.getCantidad();
-        assertEquals(result, 2);
+        assertEquals(2, article.getCantidad());
     }
 
     @Test
     @DisplayName("setCantidad test")
     void testSetCantidad(){
-        assertEquals(2, article.getCantidad());
         article.setCantidad(1);
         assertEquals(1, article.getCantidad());
     }
@@ -46,21 +42,18 @@ public class ArticleTest {
     @Test
     @DisplayName("getPrecioTotal test")
     void testGetPrecioTotal(){
-        double result = article.getPrecioTotal();
-        assertEquals(result, 1000);
+        assertEquals(1000, article.getPrecioTotal());
     }
 
     @Test
     @DisplayName("getPrecioPorUnidad test")
     void testGetPrecioPorUnidad(){
-        double result = article.getPrecioPorUnidad();
-        assertEquals(result, 500);
+        assertEquals(500, article.getPrecioPorUnidad());
     }
 
     @Test
     @DisplayName("setPrecio test")
     void testSetPrecio(){
-        assertEquals(500, article.getPrecioPorUnidad());
         article.setPrecio(250);
         assertEquals(250, article.getPrecioPorUnidad());
     }
@@ -68,21 +61,63 @@ public class ArticleTest {
     @Test
     @DisplayName("getDescuento test")
     void testGetDescuento(){
-        double result = article.getDescuento();
-        assertEquals(result, 0.1);
+        assertEquals(0.1, article.getDescuento());
     }
 
     @Test
     @DisplayName("setDescuento test")
-    void testDescuento() {
-        assertEquals(0.1, article.getDescuento());
-        article.setDescuento(20);
-        assertEquals(20, article.getDescuento());
+    void testSetDescuento() {
+        article.setDescuento(0.5);
+        assertEquals(0.5, article.getDescuento());
     }
+
     @Test
-    @DisplayName("GetPrecioConDescuento test")
+    @DisplayName("getPrecioConDescuento test")
     void testGetPrecioConDescuento(){
-        double result = article.getPrecioConDescuento();
-        assertEquals(result, 900);
+        assertEquals(900, article.getPrecioConDescuento());
+    }
+
+
+    @Test
+    @DisplayName("setGrossAmount test")
+    void testSetGrossAmount() {
+        assertEquals(2, article.setGrossAmount());
+    }
+
+    @Test
+    @DisplayName("Precio total con cantidad 0")
+    void testCantidadCero() {
+        article.setCantidad(0);
+        assertEquals(0, article.getPrecioTotal());
+        assertEquals(0, article.getPrecioConDescuento());
+    }
+
+    @Test
+    @DisplayName("Precio con descuento 0")
+    void testDescuentoCero() {
+        article.setDescuento(0);
+        assertEquals(1000, article.getPrecioConDescuento());
+    }
+
+    @Test
+    @DisplayName("Precio unitario 0")
+    void testPrecioCero() {
+        article.setPrecio(0);
+        assertEquals(0, article.getPrecioPorUnidad());
+        assertEquals(0, article.getPrecioTotal());
+    }
+
+    @Test
+    @DisplayName("Descuento alto (50%)")
+    void testDescuentoAlto() {
+        article.setDescuento(0.5);
+        assertEquals(500, article.getPrecioConDescuento());
+    }
+
+    @Test
+    @DisplayName("Nombre vacío")
+    void testNombreVacio() {
+        article.setNombre("");
+        assertEquals("", article.getNombre());
     }
 }

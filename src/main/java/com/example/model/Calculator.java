@@ -10,6 +10,10 @@ public class Calculator {
         return a * b;
     }
 
+    public double multiply(double a, int b) {
+        return a * b;
+    }
+
     // Concatenate two strings
     public String concat(String a, String b) {
         if (b != null && a != null) {
@@ -18,12 +22,12 @@ public class Calculator {
         return EMPTY;
     }
 
-    // New: add two values
+    // Add two values
     public double sum(double a, double b) {
         return a + b;
     }
 
-    // New: apply a percentage discount
+    // Apply a percentage discount
     public double discount(double amount, double percent) {
         if (percent < 0 || percent > 100) {
             throw new IllegalArgumentException("Percentage must be between 0 and 100");
@@ -31,7 +35,7 @@ public class Calculator {
         return amount - (amount * percent / 100.0);
     }
 
-    // New: calculate the total of a list of amounts
+    // Sum a list of values
     public double calculateTotal(List<Double> amounts) {
         return amounts.stream().mapToDouble(Double::doubleValue).sum();
     }
