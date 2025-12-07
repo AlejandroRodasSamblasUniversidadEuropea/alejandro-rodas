@@ -14,17 +14,18 @@ public class OrderView extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new FlowLayout());
 
-        // add new JLabel("Order ID:");
+        // ICONO DE LA APLICACIÓN
+        Image icon = new ImageIcon(
+                getClass().getResource("/images/app.png")
+        ).getImage();
+        setIconImage(icon);
+
         JLabel idPedidoLabel = new JLabel("ID del pedido:");
         add(idPedidoLabel);
 
-        // add to view the search field
         add(searchField);
-
-        // add to view the search button
         add(searchButton);
 
-        // add to view the result area inside a JScrollPane
         resultArea.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(resultArea);
         add(scrollPane);
@@ -42,7 +43,7 @@ public class OrderView extends JFrame {
     }
 
     public void displayOrder(Order order, double rate) {
-        resultArea.setText(""); // limpia los resultados previos
+        resultArea.setText("");
 
         if (order == null) {
             resultArea.setText("Order not found.");
@@ -62,7 +63,13 @@ public class OrderView extends JFrame {
         });
 
         resultArea.append("=========================================\n");
-        resultArea.append("Total sin descuento: " + order.getGrossTotal() + "€\n");
-        resultArea.append("Total con descuento: " + order.getDiscountedTotal() + "€\n");
+        resultArea.append("Total sin descuento : " + order.getGrossTotal() + "€\n");
+        resultArea.append("Total con descuento : " + order.getDiscountedTotal() + "€\n");
+
+        if (rate > 0) {
+            double usd = order.getDiscountedTotal() * rate;
+            resultArea.append("Total en dólares   : " + usd + " USD\n");
+            resultArea.append("(Tipo de cambio EUR → USD: " + rate + ")\n");
+        }
     }
 }
