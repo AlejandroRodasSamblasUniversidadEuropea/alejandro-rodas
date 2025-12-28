@@ -1,13 +1,5 @@
 [
   {
-    "idPedido": "O001",
-    "articulos": [
-      { "nombre": "Keyboard", "cantidad": 2, "precio": 50, "descuento": 0.10 },
-      { "nombre": "Mouse", "cantidad": 1, "precio": 30, "descuento": 0 },
-      { "nombre": "Charger", "cantidad": 1, "precio": 20, "descuento": 0.05 }
-    ]
-  },
-  {
     "idPedido": "O002",
     "articulos": [
       { "nombre": "Monitor", "cantidad": 1, "precio": 200, "descuento": 0.05 },

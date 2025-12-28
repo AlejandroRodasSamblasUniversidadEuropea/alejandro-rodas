@@ -1,6 +1,6 @@
-# Proyecto Java Maven - [Modelos Unitarios]
+# Proyecto Java Maven - [Gestión de Pedidos]
 
-Este proyecto es una plantilla base para comenzar a trabajar con aplicaciones Java utilizando Maven. Asegúrate de seguir las instrucciones para configurar tu entorno correctamente y entender cómo contribuir al proyecto.
+Este proyecto es una plantilla base para trabajar con aplicaciones Java utilizando Maven. Ahora incluye un sistema de gestión de pedidos con creación, búsqueda, edición parcial y borrado de pedidos, además de cálculo de totales en EUR y USD con tipo de cambio real.
 
 ## Tabla de Contenidos
 
@@ -8,6 +8,7 @@ Este proyecto es una plantilla base para comenzar a trabajar con aplicaciones Ja
 - [Requisitos](#requisitos)
 - [Configuración del Entorno](#configuración-del-entorno)
 - [Estructura del Proyecto](#estructura-del-proyecto)
+- [Funcionalidades](#funcionalidades)
 - [Compilación y Ejecución](#compilación-y-ejecución)
 - [Contribución](#contribución)
 - [Licencia](#licencia)
@@ -16,75 +17,114 @@ Este proyecto es una plantilla base para comenzar a trabajar con aplicaciones Ja
 
 ## Introducción
 
-Este es un proyecto base para aprender sobre el uso de **Java** y **Maven**. El objetivo familiarizarse con las buenas prácticas de desarrollo y gestionar dependencias utilizando Maven.
+Este proyecto permite gestionar pedidos de artículos mediante una interfaz gráfica. Los pedidos se cargan desde un fichero `orders.json` y se guardan automáticamente tras cualquier modificación. Permite ver los totales en euros y en dólares utilizando el tipo de cambio real EUR → USD.
+
+---
 
 ## Requisitos
 
 Antes de comenzar, asegúrate de tener instalado lo siguiente en tu sistema:
 
-- **Java 8+** (JDK) - Puedes descargarlo desde [Oracle](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) o [OpenJDK](https://openjdk.java.net/)
-- **Maven** - Puedes instalar Maven siguiendo las instrucciones en su sitio oficial: [https://maven.apache.org/install.html](https://maven.apache.org/install.html)
-- **IDE recomendada:** Visual Studio Code o cualquier editor de tu preferencia con soporte para Java.
+- **Java 8+** (JDK)
+- **Maven** ([https://maven.apache.org/install.html](https://maven.apache.org/install.html))
+- **IDE recomendada:** Visual Studio Code, IntelliJ IDEA o Eclipse.
+
+---
 
 ## Configuración del Entorno
 
 ### 1. Instalar Java
-Asegúrate de que tienes **Java 8** o una versión superior instalada. Puedes verificarlo con el siguiente comando:
-
+Verifica tu versión de Java:
 ```bash
 java -version
-```
 
-### 2. Instalar Maven
-Una vez que tengas Java instalado, puedes proceder con la instalación de Maven. Para verificar que Maven esté instalado correctamente, ejecuta el siguiente comando:
+2. Instalar Maven
+
+Verifica Maven:
 
 mvn -version
 
-### 3. Configurar el IDE
-Para trabajar con este proyecto, puedes usar cualquier IDE que soporte Java, como Visual Studio Code, IntelliJ IDEA, Eclipse, etc. Si estás usando Visual Studio Code, asegúrate de instalar las siguientes extensiones:
+3. Configurar el IDE
 
-Java Extension Pack (de Microsoft)
-Maven for Java
+Asegúrate de que tu IDE tenga soporte para Java y Maven, y que la carpeta src esté marcada como fuente de código.
 
-## Estructura del proyecto
-
-```plaintext
-[NombreDelProyecto]/
+Estructura del proyecto
+[PY_TEST_UNITARIOS]/
 ├── src/
 │   └── main/
 │       └── java/
 │           └── com/
-│               └── ejemplo/
-│                   └── App.java
+│               └── example/
+│                   ├── controller/
+│                   │   └── OrderController.java
+│                   ├── model/
+│                   │   ├── Main.java
+│                   │   ├── Order.java
+│                   │   ├── Article.java
+│                   │   └── OrderRepository.java
+│                   ├── service/
+│                   │   ├── ExchangeService.java
+│                   │   └── OrderService.java
+│                   └── view/
+│                       └── OrderView.java
+├── data/
+│   └── orders.json
 ├── pom.xml
-├── target/
 └── README.md
-```
 
-## Compilación y ejecución
+Funcionalidades
 
-Para compilar y ejecutar el proyecto, sigue estos pasos:
+Visualizar lista de IDs de pedidos al iniciar la aplicación.
 
-Abre una terminal en la raíz del proyecto.
+Buscar un pedido por ID y mostrar sus detalles.
 
-Ejecuta el siguiente comando para compilar el proyecto:
-```bash
+Crear un nuevo pedido mediante formulario. Validación de ID único y persistencia en orders.json.
+
+Borrar un pedido mediante botón, actualizando memoria y JSON.
+
+Editar cantidad y descuento de los artículos de un pedido existente.
+
+Mostrar totales del pedido en EUR y USD usando tipo de cambio real de exchangerate.host.
+
+Persistencia automática: todos los cambios se reflejan en orders.json.
+
+Compilación y ejecución
+
+Compila el proyecto:
+
 mvn clean install
-```
-Para ejecutar la aplicación, usa el siguiente comando:
-```bash
-mvn exec:java
-```
 
-## Contribución
 
-Si deseas contribuir a este proyecto, por favor sigue estos pasos:
-- Haz un fork del repositorio.
-- Crea una nueva rama (git checkout -b feature-nueva-funcionalidad).
-- Realiza tus cambios y haz commit (git commit -am 'Agregué nueva funcionalidad').
-- Empuja los cambios a tu fork (git push origin feature-nueva-funcionalidad).
-- Crea un pull request.
+Ejecuta la aplicación:
 
-## Licencia
+mvn exec:java -Dexec.mainClass="com.example.model.Main"
+
+
+Nota: Asegúrate de que orders.json esté en la carpeta data/. Si no existe, la aplicación lo crea automáticamente.
+
+Contribución
+
+Para contribuir al proyecto:
+
+Haz un fork del repositorio.
+
+Crea una nueva rama:
+
+git checkout -b feature-nueva-funcionalidad
+
+
+Realiza tus cambios y haz commit:
+
+git commit -am "Agregué nueva funcionalidad"
+
+
+Empuja tus cambios:
+
+git push origin feature-nueva-funcionalidad
+
+
+Crea un pull request.
+
+Licencia
 
 Este proyecto está bajo la Licencia MIT - consulta el archivo LICENSE para más detalles.
