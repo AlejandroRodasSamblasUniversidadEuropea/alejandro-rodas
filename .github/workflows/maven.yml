@@ -1,8 +1,10 @@
-name: Build and Auto-Release (Java Swing Maven)
+name: Build and Auto-Release (Java Maven)
 
 on:
   push:
     branches: [ develop ]
+    tags:
+      - 'v*.*.*'
 
 jobs:
   build-and-release:
@@ -14,29 +16,18 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Set up JDK 17
+      - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 21
           cache: maven
 
-      - name: Check if pom.xml changed
-        id: detect
-        run: |
-          if git diff HEAD~1 --name-only | grep -q "pom.xml"; then
-            echo "changed=true" >> $GITHUB_OUTPUT
-          else
-            echo "changed=false" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Stop if pom.xml not changed
-        if: steps.detect.outputs.changed == 'false'
-        run: echo "No se ha modificado pom.xml. No se generará release." && exit 0
-
-      - name: Get version
+      - name: Get version from POM
         id: version
-        run: echo "version=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_OUTPUT
+        run: |
+          VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Build with Maven
         run: mvn -B clean package
@@ -44,14 +35,15 @@ jobs:
       - name: Prepare JAR
         run: |
           VERSION=${{ steps.version.outputs.version }}
-          mv target/*.jar target/swing-app-${VERSION}.jar
+          mkdir -p target/release
+          mv target/*.jar target/release/py_test_unitarios-${VERSION}.jar
 
-      - name: Create tag and release
+      - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v${{ steps.version.outputs.version }}
           name: "Release v${{ steps.version.outputs.version }}"
           body: "Automated release for version ${{ steps.version.outputs.version }}"
-          files: target/swing-app-${{ steps.version.outputs.version }}.jar
+          files: target/release/py_test_unitarios-${{ steps.version.outputs.version }}.jar
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
