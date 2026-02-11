@@ -1,5 +1,12 @@
 [
   {
+    "idPedido": "O001",
+    "articulos": [
+      { "nombre": "Triciclo", "cantidad": 1, "precio": 200, "descuento": 0.05 },
+      { "nombre": "Casco", "cantidad": 1, "precio": 40, "descuento": 0.15 }
+    ]
+  },
+  {
     "idPedido": "O002",
     "articulos": [
       { "nombre": "Monitor", "cantidad": 1, "precio": 200, "descuento": 0.05 },

@@ -11,7 +11,7 @@ import java.util.List;
 public class Main {
 
     private static final Logger log = LoggerFactory.getLogger(Main.class);
-    private static final String JSON_FILE = "data/orders.json";
+    private static final String JSON_FILE = "demo/data/orders.json";
 
     public static void main(String[] args) {
         log.info("Iniciando la aplicación de gestión de pedidos...");
